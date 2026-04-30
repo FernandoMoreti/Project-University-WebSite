@@ -93,4 +93,8 @@ O projeto utiliza **Client Components** para gerenciar múltiplos estados assín
 *   **Resiliência:** Tratamento de erros para APIs que podem falhar individualmente (como Clima ou Wikipedia) sem interromper a exibição dos dados principais do país.
 
 ---
+
+## LINK PROJETO
+
+https://project-university-web-site.vercel.app/
 Desenvolvido por Fernando Moreti
