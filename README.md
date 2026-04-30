@@ -58,6 +58,32 @@ Uma aplicação interativa e imersiva para exploração de dados globais. O proj
 4.  **Acesse no navegador:**
     Abra http://localhost:3000 para ver o resultado.
 
+## 🏗️ Arquitetura do Sistema
+
+A aplicação segue uma arquitetura de **Client-Side Data Fetching**, onde o navegador do usuário coordena múltiplas requisições assíncronas para compor o dashboard em tempo real.
+
+```mermaid
+graph TD
+    User((Usuário)) -->|Pesquisa País| NextJS[Next.js App]
+    
+    subgraph "Frontend (Client Side)"
+        NextJS -->|1. Busca Tradução| RC[Rest Countries API]
+        NextJS -->|2. Busca Imagem| UN[Unsplash API]
+        
+        RC -->|Coordenadas| OM[Open-Meteo API]
+        RC -->|Nome PT| WK[Wikipedia API]
+    end
+
+    subgraph "External APIs"
+        RC -.->|Dados Geográficos| RC_Source[(Rest Countries)]
+        UN -.->|Imagens de Fundo| UN_Source[(Unsplash)]
+        OM -.->|Clima em Tempo Real| OM_Source[(Open Meteo)]
+        WK -.->|Resumo Histórico| WK_Source[(Wikipedia)]
+    end
+
+    NextJS -->|Renderiza| Bento[Bento Grid Dashboard]
+```
+
 ## 🏗️ Estrutura de Código
 
 O projeto utiliza **Client Components** para gerenciar múltiplos estados assíncronos:
